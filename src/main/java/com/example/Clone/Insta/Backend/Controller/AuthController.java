@@ -1,9 +1,6 @@
 package com.example.Clone.Insta.Backend.Controller;
 
-import com.example.Clone.Insta.Backend.DTO.LoginRequestDto;
-import com.example.Clone.Insta.Backend.DTO.LoginResponseDto;
-import com.example.Clone.Insta.Backend.DTO.SignupRequestDto;
-import com.example.Clone.Insta.Backend.DTO.UsernameCheckResponseDto;
+import com.example.Clone.Insta.Backend.DTO.*;
 import com.example.Clone.Insta.Backend.Security.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +28,13 @@ public class AuthController {
             @RequestParam String username) {
 
         return authService.checkUsername(username);
+    }
+
+    @PostMapping("/refresh")
+    public LoginResponseDto refresh(
+            @RequestBody RefreshTokenRequestDto request
+    ) {
+        return authService.refresh(request.getRefreshToken());
     }
 
 }
